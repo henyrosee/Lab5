@@ -271,6 +271,29 @@ Please ensure your code follows the existing style conventions and includes rele
 
 ---
 
+## Laboratory Exercise: Product CRUD
+
+This project includes session authentication and protected product CRUD routes:
+
+- `/login` and `/logout`
+- `/products`
+- `/products/create`
+- `/products/edit/{id}`
+- `/products/delete/{id}` (POST only)
+
+Copy `.env.example` to `.env` for local development. For the Aiven database named
+`mydb`, set `DB_DRIVER=mysql`, `DB_HOST`, `DB_PORT`, `DB_USER`, `DB_PASSWORD`,
+`DB_NAME=mydb`, and `DB_CHARSET=utf8mb4`. Set `APP_KEY` to a random secret and
+provide `ADMIN_EMAIL` and `ADMIN_PASSWORD`; the first login request creates the
+admin account, and the first authenticated products request creates the `products`
+table if they do not already exist. Never commit
+`.env` or database credentials.
+
+For Aiven TLS, set `DB_SSL_CA` to the path of the downloaded Aiven CA certificate.
+On Render, add all of these values under Environment Variables rather than
+committing them to GitHub. Configure the web service document root to `public`
+and use the PHP runtime/start command supported by the selected Render setup.
+
 ## License
 
 LavaLust Framework is open-source software licensed under the **[MIT License](https://opensource.org/licenses/MIT)**.
