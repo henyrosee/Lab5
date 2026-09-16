@@ -17,15 +17,17 @@ WORKDIR /var/www/html
 
 COPY . .
 
-# Give Apache permission to write where needed
+# Give Apache permission to write to the application
 RUN chown -R www-data:www-data /var/www/html \
     && chmod -R 775 /var/www/html
 
 # Allow LavaLust .htaccess rules
-RUN echo '<Directory /var/www/html/public>
-    AllowOverride All
-    Require all granted
-</Directory>' > /etc/apache2/conf-available/lavalust.conf \
+RUN printf '%s\n' \
+    '<Directory /var/www/html/public>' \
+    '    AllowOverride All' \
+    '    Require all granted' \
+    '</Directory>' \
+    > /etc/apache2/conf-available/lavalust.conf \
     && a2enconf lavalust
 
 EXPOSE 80
